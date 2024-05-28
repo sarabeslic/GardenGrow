@@ -1,0 +1,121 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.header {
+  height: 10vh;
+  background-color: #A9B65D;
+}
+
+.headerdown {
+  display: flex;
+  align-items: center; /* Align items vertically */
+  height: 100%;
+  color: #0C2F00;
+}
+
+.headerdown li{
+  padding-right: 30px;
+}
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Align items vertically */
+  height: 100%;
+  padding: 0 8%;
+  color: #0C2F00;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 1.6rem;
+  font-family:  Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  padding-right: 50%;
+}
+
+.detailsTogether {
+  display: flex;
+  flex-direction: row;
+}
+.imageDetails {
+  height: 360px; /* Height of the image */
+  flex: 0 0 360px;
+  margin-right: 80px;
+  
+}
+
+@media screen and (max-width: 990px) {
+  .detailsTogether {
+  display: flex;
+  flex-direction: column;
+  }
+  .imageDetails {
+    margin-bottom: 40px;
+    max-width: 550px;
+  }
+}
+
+.imageDetails img {
+  height: 100%; /* Ensures the image takes up the full height of its container */
+  width: 100%; /* Ensures the image takes up the full width of its container */
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 5px 9px -3px rgba(0, 0, 0, 0.7); /* Shadow only under the image */
+}
+
+.textDetails {
+
+  flex:column;
+  flex-wrap: wrap;
+}
+
+.bigButton{
+  color: #0C2F00;
+  width:100%;
+  margin-top:  40px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 10px;
+  box-shadow: 0 4px 8px -3px rgba(0, 0, 0, 0.5);
+}
+
+.teamMembers img {
+  width: 180px;
+}
+
+.team p{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+
+.fleur-de-leah-regular {
+  font-family: "Fleur De Leah", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.blogImage {
+  width: 380px;
+  flex: 0 0 auto;
+
+}
+
+.blogImage img {
+  width: 100%;
+  height: 100%;
+  transition-timing-function: ease-in-out;
+  
+}
+
+.water-drop{
+    color: blue; /* Set the color to blue */
+    font-size: 24px; /* Set the font size */
+  }
+
+.favourites{
+  color:#0C2F00;
+}
+
+
