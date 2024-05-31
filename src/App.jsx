@@ -9,25 +9,30 @@ import Plants from './pages/plants.jsx';
 import Details from './pages/details.jsx'; 
 import MyFavorites from './pages/myGarden.jsx';
 import Cart from './pages/cart.jsx';
-import Try from './pages/try.jsx';
+import { FavoritesProvider } from './pages/FavoritesContext.jsx';
+import { ShopContextProvider } from './context/cartContext.jsx';
 
-// Define your page components
+// page components
 
 const App = () => {
   return (
-    <Router>
-      <div>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/details" element={<Details />} /> 
-          <Route path="/plants" element={<Plants/>} />
-          <Route path="/myGarden" element={<MyFavorites/>} />
-          <Route path="/cart" element={<Cart/>} />
-          <Route path="/profile" element={<Try/>} />
-        </Routes>
-      </div>
-    </Router>
+    <FavoritesProvider> {/* provide the FavoritesContext to the components that need it */}
+      <ShopContextProvider>
+        <Router>
+          <div>
+            <Navbar />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/details" element={<Details />} />
+              <Route path="/plants" element={<Plants />} />
+              <Route path="/myGarden" element={<MyFavorites />} />
+              <Route path="/cart" element={<Cart/>} />
+              <Route path="/profile" /> {/*profile page is just there as an icon*/}
+            </Routes>
+          </div>
+        </Router>
+      </ShopContextProvider>
+    </FavoritesProvider>
   );
 };
 

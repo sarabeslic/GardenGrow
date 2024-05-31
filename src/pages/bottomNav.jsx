@@ -2,13 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const BottomNav = () => {
-  // Define an array containing objects with text and link properties
+  // an array containing objects with text and link properties
   const navItems = [
     { text: 'Home', link: '/' },
     { text: 'Plants', link: '/plants' },
     { text: 'My Garden', link: '/myGarden' }
   ];
 
+//returning the navItems array as a list of links to the respective pages  
   return (
     <nav className='headerdown'>
       <ul className='nav'>

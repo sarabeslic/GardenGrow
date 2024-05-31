@@ -1,32 +1,25 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useFavorites } from './FavoritesContext';
 import { PiFlowerFill } from "react-icons/pi";
-import product from '../products';
 
 
+// FavoriteButton component that takes a productId as a prop
+//check if the product is favorited or not and display the appropriate icon color
 
-function ToggleButton() {
-    const [color, setColor] = useState('black');
+const FavoriteButton = ({ productId }) => {
+  const { favorites, toggleFavorite } = useFavorites();
+  const isFavorited = favorites[productId];
 
-    
-    const toggleColor = () => {
-        // Toggle the color between black and yellow
-        setColor((prevColor) => {
-            const newColor = prevColor === 'black' ? 'yellow' : 'black';
-            console.log('my new color ' + newColor);
-            
-            // Update the product.favorite based on the new color
-            const updatedProduct = { ...product, favorite: newColor === 'yellow' };
-            console.log(updatedProduct.favorite);
-            
-            return newColor;
-        });
-    };
-    
-    return (
-        <button className=" py-1 px-1" onClick={toggleColor}>
-            <PiFlowerFill className={`text-4xl "hover:text-yellow-400 bg-opacity-60 transition duration-300 ease-in-out ${color === 'black' ? 'text-black' : 'text-yellow-400'}`}/>
-        </button>
-    );
-} 
+  return (
+    <div
+      onClick={() => toggleFavorite(productId)}
+      className={`text-4xl hover:text-yellow-400 transition duration-300 opasity-100 ease-in-out ${isFavorited ? 'text-yellow-400' : 'text-black'}`}
+    >
+      <PiFlowerFill/>
+    </div>
+  );
+};
 
-export default ToggleButton;
+export default FavoriteButton;
+
+

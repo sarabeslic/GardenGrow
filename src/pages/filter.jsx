@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import { MdWaterDrop } from 'react-icons/md';
 
+//make filters as object with id, name and options properties stored in an array and set as the initial state
 function FilterBar({ onFilterChange}){ //pass the onFilterChange function as a prop to the FilterBar component
   const [filters, setFilters] = useState([
     {
@@ -15,34 +16,38 @@ function FilterBar({ onFilterChange}){ //pass the onFilterChange function as a p
       ],
     },
     {
-      id: 'colour',
-      name: 'Colour',
-      options: [
-        { value: 'white', label: 'White', checked: false },
-        { value: 'blue', label: 'blue', checked: false },
-        { value: 'yellow', label: 'yellow', checked: false },
-        { value: 'red', label: 'red', checked: false },
-        { value: 'pink', label: 'pink', checked: false },
-        { value: 'purple', label: 'Purple', checked: false },
-      ],
-    },
-    {
       id:'season',
       name: 'Season',
       options: [
-        { value: 'spring', label: 'Spring', checked: false },
-        { value: 'summer', label: 'Summer', checked: false },
-        { value: 'autumn', label: 'Autumn', checked: false },
-        { value: 'winter', label: 'Winter', checked: false },
+        { value: 'spring', label: 'spring', checked: false },
+        { value: 'summer', label: 'summer', checked: false },
+        { value: 'autumn', label: 'autumn', checked: false },
+        { value: 'winter', label: 'winter', checked: false },
+        { value: 'year- round', label: 'year- round', checked: false}
       ],
     },
     {
       id:'exposure',
       name: 'Exposure',
       options: [
-        { value: 'full sun', label: 'Full Sun', checked: false },
-        { value: 'partial sun', label: 'Partial Sun', checked: false },
-        { value: 'shade', label: 'Shade', checked: false },
+        { value: 'full sun', label: 'full sun', checked: false },
+        { value: 'partial shade', label: 'partial shade', checked: false },
+        { value: 'shade', label: 'shade', checked: false },
+      ],
+    },
+    {
+      id: 'colour',
+      name: 'Colour',
+      options: [
+        { value: 'orange', label: 'orange', checked: false },
+        { value: 'blue', label: 'blue', checked: false },
+        { value: 'turquoise', label: 'turquoise', checked: false },
+        { value: 'red', label: 'red', checked: false },
+        { value: 'pink', label: 'pink', checked: false },
+        { value: 'purple', label: 'purple', checked: false },
+        { value: 'yellow', label: 'yellow', checked: false },
+        { value: 'white', label: 'white', checked: false },
+        {value:'multiple', label:'multiple', checked: false}
       ],
     },
     {
@@ -56,8 +61,7 @@ function FilterBar({ onFilterChange}){ //pass the onFilterChange function as a p
     },
   ]);
 
-
-
+//function to handle the checkbox change event, just the visual not the actual filtering
   const handleCheckboxChange = (filterId, optionIndex) => {
 
     const updatedFilters = filters.map(filter => {
@@ -83,7 +87,7 @@ function FilterBar({ onFilterChange}){ //pass the onFilterChange function as a p
   };
 
 
-
+//same but for the water drop icons
   const handleWaterClick = (optionIndex) => {
     const updatedFilters = filters.map(filter => {
       if (filter.id === 'water') {
@@ -104,9 +108,10 @@ function FilterBar({ onFilterChange}){ //pass the onFilterChange function as a p
 
 
   return (
-    <div className='bg-rose-200 w-64 h-full p-2 pl-8'>
+    <div className='bg-rose-100 w-32 sm:w-64 h-full p-2 sm:pl-8'>
       <h2 className='font-bold text-center mt-6'>FILTERS</h2>
-
+ 
+    {/*map through the filters array and render the filter name and options*/}
       {filters.map(filter => (
         <Fragment key={filter.id}>
 
@@ -131,7 +136,7 @@ function FilterBar({ onFilterChange}){ //pass the onFilterChange function as a p
                 <MdWaterDrop
                   key={index}
                   size={24}
-                  color={option.checked ? 'blue' : 'grey'}
+                  color={option.checked ? 'blue' : 'grey'} //if the option is checked, set the color to blue, otherwise grey
                   onClick={() => handleWaterClick(index)}
                   style={{ cursor: 'pointer', marginRight: '5px' }}
                 />

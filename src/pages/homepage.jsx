@@ -2,43 +2,47 @@ import React from "react";
 import MyGardenBlog from "./MyGardenBlog";
 import { useState, useEffect } from 'react';
 import BottomNav from "./bottomNav";
+import { Link } from "react-router-dom"; //neessarry for the link to work
+
 
 function Home(){
-    const [imageIndex, setImageIndex] = useState(0);
-    const images = ['src/pics/garden.jpg', 'src/pics/Shib.jpg', 'src/pics/gardenNight.jpg'];
+    const [imageIndex, setImageIndex] = useState(0); //state for image rotation
+    const images = ['/pics/garden.jpg', '/pics/Shib.jpg', '/pics/gardenNight.jpg'];
 
-    useEffect(() => {
+    useEffect(() => { //rotate images every 8 seconds
         const intervalId = setInterval(() => {
         setImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-        }, 8000); // rotate images every 8 seconds
+        }, 8000); 
 
-        return () => clearInterval(intervalId);
+        return () => clearInterval(intervalId); //clear interval to prevent memory leak
     }, [images]);
 
 
 
     return (
-        <>
+        <> {/*main image with the shop now button*/}
         <section className="relative">
-            <img src="mainImg.jpg" className="h-96 w-full object-cover md:w-full bg-white md:opacity-85" alt="Main Image" />
+            <img src="/pics/mainImg.jpg" className="h-96 w-full object-cover md:w-full bg-white md:opacity-85" alt="Main Image" />
             <div className="absolute inset-0 flex flex-col items-center justify-evenly text-emerald-1000 mt-20" >
-                <p className="fleur-de-leah-regular text-4xl lg:text-7xl xl:text-8xl w-2/3 text-center">Grow your garden</p>
+                <button className="fleur-de-leah-regular text-5xl lg:text-7xl xl:text-8xl w-2/3 text-center">Grow your garden</button>
+                <Link to="/plants">
                 <button className="mt-6 bg-amber-400 hover:bg-amber-600 transition duration-300 ease-in-out-font-semibold py-3 px-4 w-52 z-10 shadow-xl">SHOP NOW</button>
+                </Link>
             </div>
 
-        </section>
+        </section> {/*blog section with the images rotating*/}
         <p className='text-center font-semi pt-10'>GET INSPIRED...</p>
         <section className="mt-3 h-128 text-lg bg-rose-100 shadow-md border-b-2 border-gray-300">
         <div className="flex flex-row justify-between px-10 md:pr-40 pl-0 ">
             <div className="blogImage hidden md:block "> 
-                <img src={images[imageIndex]} alt="images"  />
+                <img src={images[imageIndex]} alt="images"  /> {/*getting images from states*/}
             </div>
             <div className="flex-1 pl-6">
-                <MyGardenBlog/>
+                <MyGardenBlog/> {/*blog component*/}
             </div>
         </div>
     </section>
-
+                {/*team section with the images of the team members*/}
     <article className='team flex flex-col justify-between my-10 mx-10 text-lg relative md:mx-40 md:flex-row'>
         <div className='flex-shrink-0 flex-grow-0  md:w-2/3 md:mr-4'>
             <p>TEAM AND OUR MISSION</p>
@@ -50,17 +54,17 @@ function Home(){
         <div className="teamMembers">
             <div>
                 <p>NICOLETA DUBLEA</p>
-                <img src='src/pics/lily.jpg' alt="Nicoleta Dublea" /> {/* Added alt attribute */}
+                <img src='/pics/lily.jpg' alt="Nicoleta Dublea" /> 
             </div>
             <div>
                 <p>SARA BEŠLIĆ</p>
-                <img src='src/pics/daisy.jpg' alt="Sara Bešlić" /> {/* Added alt attribute */}
+                <img src='/pics/daisy.jpg' alt="Sara Bešlić" /> 
             </div>
         </div>
     </article>
 
     <section className='bg-amber-400 w-full h-10 pt-5 mt-5'>
-        <BottomNav />
+        <BottomNav /> {/*bottom navigation component*/}
     </section>
         </>
     );
