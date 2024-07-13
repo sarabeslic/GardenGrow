@@ -22,7 +22,7 @@ const Navbar = () => {
         <h1 className='logo text-2xl font-bold'>GardenGrow</h1>
 
         {/* Desktop Menu */}
-        <ul className='hidden lg:flex space-x-8'>
+        <ul className='hidden lg:flex items-center space-x-8'>
           {navItems.map((item, index) => (
             <li key={index}>
               <Link to={item.link}>{item.text}</Link>

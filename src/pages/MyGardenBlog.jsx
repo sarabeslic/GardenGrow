@@ -8,7 +8,7 @@ const posts = [
       are some basic tips to get you started:1. Start Small: Begin with a small area or a few pots. This allows you to focus your efforts and learn as you go without feeling overwhelmed.
       
       1. Choose the Right Spot: Select a spot that gets plenty of sunlight (at least 6 hours per day) and has good drainage. If you're gardening indoors, choose a sunny windowsill or consider investing in grow lights.`,
-    date: 'Mar 16, 2020',
+    date: 'Mar 18, 2024',
     datetime: '2020-03-16'
   },
   {
@@ -21,7 +21,7 @@ const posts = [
       1. Choose the Right Plants: Select flowers that are well-suited to your garden's growing conditions. Consider factors like sunlight, soil type, and climate when choosing your plants.
       
       2. Provide Adequate Water: Proper watering is crucial for healthy flowers. Water your plants deeply and evenly, ensuring the soil is moist but not waterlogged. Water in the morning to reduce the risk of fungal diseases and allow foliage to dry before nightfall.`,
-      date: 'Mar 16, 2020',
+      date: 'Mar 25, 2024',
       datetime: '2020-03-16'
   }
   ]

@@ -33,7 +33,7 @@ function Cart() {
                       <div className='flex items-center mt-2'>
                         {/** Display the quantity of the product in the cart and allow user to increase or decrease the quantity*/}
                       <button onClick={() => removeFromCart(productId)} className='bg-white text-yellow-500 px-2 py-1 rounded'>-</button>
-                        <input type='text' value={cartItems[productId]} className='mx-2 w-10 text-center border border-yellow-500 rounded-md' />
+                        <input type='text' value={cartItems[productId]} className='mx-2 w-12 text-center border border-yellow-500 rounded-md' />
                         <button onClick={()=>addToCart(productId)} className='bg-white text-yellow-500 px-2 py-1 rounded'>+</button>
                       </div>
 

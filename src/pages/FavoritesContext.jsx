@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import PRODUCTS from '../products';
 
 
-const FavoritesContext = createContext();
+const FavoritesContext = createContext(); // Create a new context for the favorites
 
 
 export const FavoritesProvider = ({ children }) => {

@@ -44,7 +44,7 @@ function Logic(props) {
         {waterDrops.map(drop => drop)}
       </div>
       <div className='flex flex-row'>
-        {suns.map(sun => sun)}
+        {suns.map(sun => sun)} {/*means for each sun in suns array, display the sun icon*/}
       </div>
     </div>
   );

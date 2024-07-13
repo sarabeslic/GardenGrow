@@ -75,7 +75,7 @@ function Plants() {
         <section className="w-full flex justify-center sm:justify-start  mb-4 sm:ml-16">
           <input 
             type='text' 
-            placeholder='Search...' 
+            placeholder='Search...'  //placeholder text
             onChange={event => setSearchTerm(event.target.value)} 
             className='p-2 w-42 h-11 bg-slate-300 border-none rounded-md' 
           />

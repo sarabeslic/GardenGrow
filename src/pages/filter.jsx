@@ -1,8 +1,15 @@
 import React, { Fragment, useState } from 'react';
 import { MdWaterDrop } from 'react-icons/md';
+import { MdFilterList } from 'react-icons/md';
+import { TbFilterSearch } from "react-icons/tb";
 
 //make filters as object with id, name and options properties stored in an array and set as the initial state
 function FilterBar({ onFilterChange}){ //pass the onFilterChange function as a prop to the FilterBar component
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
   const [filters, setFilters] = useState([
     {
       id: 'price',  
@@ -23,7 +30,7 @@ function FilterBar({ onFilterChange}){ //pass the onFilterChange function as a p
         { value: 'summer', label: 'summer', checked: false },
         { value: 'autumn', label: 'autumn', checked: false },
         { value: 'winter', label: 'winter', checked: false },
-        { value: 'year- round', label: 'year- round', checked: false}
+        { value: 'year-round', label: 'year-round', checked: false}
       ],
     },
     {
@@ -108,44 +115,62 @@ function FilterBar({ onFilterChange}){ //pass the onFilterChange function as a p
 
 
   return (
-    <div className='bg-rose-100 w-32 sm:w-64 h-full p-2 sm:pl-8'>
-      <h2 className='font-bold text-center mt-6'>FILTERS</h2>
- 
-    {/*map through the filters array and render the filter name and options*/}
-      {filters.map(filter => (
-        <Fragment key={filter.id}>
+    <>
+      {/* Toggle Button for Mobile */}
+      <button
+        className="md:hidden fixed top-30 left-4 z-5 text-green-900 p-2 rounded"
+        onClick={toggleMenu}
+      >
+        <TbFilterSearch size={26}/></button>
 
-          <h3 className='my-3 font-semibold text-sm'>{filter.name}</h3>
-          {filter.id !== 'water' ? (
+      {/* Curtain Menu for Small Screens */}
+      <div
+        className={`fixed top-0 left-0 w-full h-full bg-rose-100 z-40 transform ${
+          isOpen ? 'translate-x-0' : '-translate-x-full'
+        } transition-transform duration-300 ease-in-out md:static md:translate-x-0 md:w-72 p-2 sm:pl-8`}
+      >
+        {/* Close Button for Mobile */}
+        <button
+          className="md:hidden absolute top-4 right-4 text-gray-700" onClick={toggleMenu}
+        >X
+        </button>
 
-            filter.options.map((option, index) => (
-              <div key={index} className='flex items-center mb-2'>
-                <input
-                  type="checkbox"
-                  checked={option.checked}
-                  onChange={() => handleCheckboxChange(filter.id, index)}
-                  className='mr-2 form-checkbox text-green-700' //to switch to green
-                />
-                <label className='text-sm'>{option.label}</label>
+        <h2 className="font-bold text-center mt-6">FILTERS</h2>
+
+        {/* Map through the filters array and render the filter name and options */}
+        {filters.map((filter) => (
+          <Fragment key={filter.id}>
+            <h3 className="my-3 ml-6 font-semibold text-sm">{filter.name}</h3>
+            {filter.id !== 'water' ? (
+              filter.options.map((option, index) => (
+                <div key={index} className="flex items-center mb-2">
+                  <input
+                    type="checkbox"
+                    checked={option.checked}
+                    onChange={() => handleCheckboxChange(filter.id, index)}
+                    className="ml-8 mr-3 form-checkbox text-green-700" // To switch to green
+                  />
+                  <label className="text-sm">{option.label}</label>
+                </div>
+              ))
+            ) : (
+              // If the filter id is 'water', render the water drop icons
+              <div className="flex flex-row justify-center">
+                {filter.options.map((option, index) => (
+                  <MdWaterDrop
+                    key={index}
+                    size={24}
+                    color={option.checked ? 'blue' : 'grey'} // If the option is checked, set the color to blue, otherwise grey
+                    onClick={() => handleWaterClick(index)}
+                    style={{ cursor: 'pointer', marginRight: '5px' }}
+                  />
+                ))}
               </div>
-            ))
-          ) : ( //if the filter id is 'water', render the water drop icons
-            <div className='flex flex-row justify-center'>
-
-              {filter.options.map((option, index) => (
-                <MdWaterDrop
-                  key={index}
-                  size={24}
-                  color={option.checked ? 'blue' : 'grey'} //if the option is checked, set the color to blue, otherwise grey
-                  onClick={() => handleWaterClick(index)}
-                  style={{ cursor: 'pointer', marginRight: '5px' }}
-                />
-              ))}
-            </div>
-          )}
-        </Fragment> //fragment is used to group multiple children without adding extra nodes to the DOM
-      ))}
-    </div>
+            )}
+          </Fragment>
+        ))}
+      </div>
+    </>
   );
 };
 

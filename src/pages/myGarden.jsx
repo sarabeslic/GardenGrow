@@ -4,10 +4,13 @@ import { FaShoppingBasket } from 'react-icons/fa';
 import { useFavorites } from './FavoritesContext';
 import PRODUCTS from '../products'; 
 import FavoriteButton from './toggleButton';
+import { ShopContext } from '../context/cartContext.jsx';
+import { useContext } from 'react';
 
 
 function MyFavorites() {
   const { favorites } = useFavorites(); // Destructure the favorites object from the useFavorites hook
+  const { addToCart } = useContext(ShopContext); // Destructure the addToCart function from the ShopContext to add products to the cart
 
   // Filter the PRODUCTS array to include only the favorited products
   const favoriteProducts = PRODUCTS.filter(product => favorites[product.id]);
@@ -38,9 +41,9 @@ function MyFavorites() {
           <section className="bg-rose-100 px-2 rounded-b py-0 border border-black">
             <div className='flex justify-between -mb-2 mt-2'>
               <h3 className="text-lg">{product.name}</h3>
-              <div className="bg-yellow-500 hover:bg-yellow-700 text-white py-1 px-1 rounded transition duration-300 ease-in-out">
-                <FaShoppingBasket className='text-2xl' />
-              </div>
+              <button onClick={()=>addToCart(product.id)}className="bg-yellow-500 hover:bg-yellow-700 text-white py-1 px-1 rounded transition duration-300 ease-in-out">
+                  <FaShoppingBasket className='text-2xl' /> {/* directly add the product to the cart by calling the addToCart function with the product ID as an argument*/}
+                </button>
             </div>
             <p className="text-green-600 font-bold">${product.price}</p>
           </section>

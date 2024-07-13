@@ -63,7 +63,7 @@ function Home(){
         </div>
     </article>
 
-    <section className='bg-amber-400 w-full h-10 pt-5 mt-5'>
+    <section className='bg-amber-400 w-full h-14 py-5 mt-5'>
         <BottomNav /> {/*bottom navigation component*/}
     </section>
         </>
